@@ -17,29 +17,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup .NET SDK
+      - name: Setup .NET SDK 9.0.x
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore Anthropic.Client.csproj
+      - name: Restore Anthropic.Client
+        run: dotnet restore Anthropic.Client/Anthropic.Client.csproj
 
-      - name: Build library
+      - name: Build Anthropic.Client (multi‑target)
         run: |
-          dotnet build Anthropic.Client.csproj \
+          dotnet build Anthropic.Client/Anthropic.Client.csproj \
             --configuration Release \
             --no-restore
 
       - name: Run unit tests
-        run: dotnet test Anthropic.Client.Tests.csproj --configuration Release
-      
-      - name: Pack library
-        id: pack
         run: |
-          dotnet pack Anthropic.Client.csproj \
+          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj \
             --configuration Release \
-            --output artifacts \
+            --no-build \
+            --no-restore
+
+      - name: Pack Anthropic.Client
+        run: |
+          dotnet pack Anthropic.Client/Anthropic.Client.csproj \
+            --configuration Release \
+            --output ./artifacts \
             --no-build \
             --no-restore
 
@@ -52,15 +55,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup .NET SDK
+      - name: Setup .NET SDK 9.0.x
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '9.0.x'
 
-      - name: Push packages
+      - name: Push package to NuGet.org
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          dotnet nuget push "artifacts/*.nupkg" \
+          dotnet nuget push "./artifacts/*.nupkg" \
             --api-key $NUGET_API_KEY \
             --source https://api.nuget.org/v3/index.json
