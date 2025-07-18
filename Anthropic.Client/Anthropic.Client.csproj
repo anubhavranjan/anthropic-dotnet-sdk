@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net7.0;net8.0;net9.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageId>Anthropic.Client</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Anubhav Ranjan</Authors>
+		<Company></Company>
+		<Description>Strongly‑typed .NET client for Anthropic’s Claude API</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/anubhavranjan/anthropic-dotnet-sdk</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/anubhavranjan/anthropic-dotnet-sdk</RepositoryUrl>
+		<Nullable>enable</Nullable>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix></VersionSuffix>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
+		<FileVersion>1.0.0</FileVersion>
+		<PackageLicenseExpression></PackageLicenseExpression>
+		<PackageTags>anthropic, claude</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- If you need JSON serialization -->
+		<PackageReference Include="System.Text.Json" Version="9.0.7" />
+		<!-- Polly for retries, if desired -->
+		<PackageReference Include="Polly" Version="8.6.2" />
+		<!-- Logging abstractions -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
+	</ItemGroup>
+</Project>
