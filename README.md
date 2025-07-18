@@ -38,16 +38,39 @@ Or via Package Manager Console:
 ```csharp
 using Anthropic.Client; 
 using Anthropic.Client.Models;
-// Configure the client var options = new AnthropicClientOptions { ApiKey = "your-api-key-here", 
-// or set ANTHROPIC_API_KEY environment variable EnableLogging = true, MaxRetries = 3, Timeout = TimeSpan.FromSeconds(100) };
+// Configure the client
+var options = new AnthropicClientOptions
+{
+	ApiKey = "your-api-key-here", 	// or set ANTHROPIC_API_KEY environment variable
+	EnableLogging = true,
+	MaxRetries = 3,
+	Timeout = TimeSpan.FromSeconds(100)
+};
 
-// Create the client using var client = new AnthropicClient(options);
+// Create the client
+using var client = new AnthropicClient(options);
+
 ```
 
 ### Simple Message Request
 ```csharp
-var request = new MessagesRequest { Model = AnthropicModels.Claude35Sonnet, MaxTokens = 1000, Messages = new List<Message> { new Message { Role = "user", Content = "Hello, Claude!" } } };
-var response = await client.CreateMessagesAsync(request); Console.WriteLine(response.Content[0].Text);
+var request = new MessagesRequest
+{
+	Model = AnthropicModels.Claude35Sonnet,
+	MaxTokens = 1000,
+	Messages = new List<Message>
+	{
+		new Message
+		{
+			Role = "user",
+			Content = "Hello, Claude!"
+		}
+	}
+};
+
+var response = await client.CreateMessagesAsync(request);
+Console.WriteLine(response.Content[0].Text);
+
 ```
 
 ## 📚 Available Models
@@ -78,6 +101,7 @@ var request = MessagesRequestBuilder.Create()
 	.AddAssistantMessage("Quantum computing is...") 
 	.AddUserMessage("Can you elaborate on quantum entanglement?") 
 	.Build();
+
 var response = await client.CreateMessagesAsync(request);
 ```
 
@@ -90,10 +114,17 @@ Simplified usage with extension methods:
 using Anthropic.Client.Extensions;
 
 // Quick single message 
-var response = await client.SendMessageAsync( "What is the capital of France?", AnthropicModels.Claude35Sonnet);
+var response = await client.SendMessageAsync(
+	"What is the capital of France?",
+	AnthropicModels.Claude35Sonnet
+);
 
 // With system prompt 
-var response = await client.SendMessageAsync( "Write a haiku about programming", AnthropicModels.Claude35Sonnet, systemPrompt: "You are a creative poet");
+var response = await client.SendMessageAsync(
+	"Write a haiku about programming",
+	AnthropicModels.Claude35Sonnet,
+	systemPrompt: "You are a creative poet"
+);
 
 ```
 
