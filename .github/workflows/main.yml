@@ -1,4 +1,4 @@
-# .github/workflows/nuget-publish.yml
+# .github/workflows/main.yml
 name: CI & Publish NuGet package
 
 on:
