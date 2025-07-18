@@ -21,8 +21,8 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: |
-            '8.0.x'
-            '9.0.x'
+            8.0.x
+            9.0.x
 
       - name: Restore Anthropic.Client
         run: dotnet restore Anthropic.Client/Anthropic.Client.csproj
