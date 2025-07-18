@@ -32,7 +32,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release --framework net9.0
+          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release --framework net8.0
 
       - name: Pack Anthropic.Client
         run: |
