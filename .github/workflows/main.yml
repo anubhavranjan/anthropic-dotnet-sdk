@@ -32,7 +32,9 @@ jobs:
             --no-restore
 
       - name: Run unit tests
-        run: dotnet test Anthropic.Client.Tests.csproj --configuration Release- name: Pack library
+        run: dotnet test Anthropic.Client.Tests.csproj --configuration Release
+      
+      - name: Pack library
         id: pack
         run: |
           dotnet pack Anthropic.Client.csproj \
