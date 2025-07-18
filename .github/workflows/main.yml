@@ -49,11 +49,6 @@ jobs:
         with:
           name: nuget-artifacts
           path: ./artifacts/*.nupkg
-      - name: Upload NuGet package
-        uses: actions/upload-artifact@v4
-        with:
-          name: nuget-artifacts
-          path: ./artifacts/*.nupkg
 
   publish:
     name: Publish to NuGet.org
