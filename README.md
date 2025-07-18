@@ -77,13 +77,13 @@ Console.WriteLine(response.Content[0].Text);
 
 The library includes constants for all available Claude models:
 ```csharp
-// Claude 3.5 models (recommended) AnthropicModels.Claude35Sonnet  
-// "claude-3-5-sonnet-20241022" AnthropicModels.Claude35Haiku   
-// "claude-3-5-haiku-20241022"
-// Claude 3 models AnthropicModels.Claude3Opus     
-// "claude-3-opus-20240229" AnthropicModels.Claude3Sonnet   
-// "claude-3-sonnet-20240229" AnthropicModels.Claude3Haiku    
-// "claude-3-haiku-20240307"
+// Claude 3.5 models (recommended)
+AnthropicModels.Claude35Sonnet  // "claude-3-5-sonnet-20241022"
+AnthropicModels.Claude35Haiku   // "claude-3-5-haiku-20241022"
+// Claude 3 models
+AnthropicModels.Claude3Opus	// "claude-3-opus-20240229"
+AnthropicModels.Claude3Sonnet   // "claude-3-sonnet-20240229"
+AnthropicModels.Claude3Haiku    // "claude-3-haiku-20240307"
 ```
 
 
