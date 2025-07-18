@@ -8,4 +8,4 @@ jobs:
   debug:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Tag triggered: ${{ github.ref }}"
+      - run: echo "Tag triggered:${{github.ref}}"
