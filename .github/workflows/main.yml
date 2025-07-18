@@ -32,11 +32,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj \
-            --configuration Release \
-            --output ./artifacts \
-            --no-build \
-            --no-restore
+          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release
 
       - name: Pack Anthropic.Client
         run: |
