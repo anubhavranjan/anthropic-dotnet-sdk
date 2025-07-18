@@ -17,10 +17,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup .NET SDK 9.0.x
+      - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: |
+            '8.0.x'
+            '9.0.x'
 
       - name: Restore Anthropic.Client
         run: dotnet restore Anthropic.Client/Anthropic.Client.csproj
@@ -32,7 +34,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release --framework net8.0
+          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release
 
       - name: Pack Anthropic.Client
         run: |
