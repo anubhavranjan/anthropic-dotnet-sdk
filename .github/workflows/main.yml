@@ -2,11 +2,9 @@
 name: CI & Publish NuGet package
 
 on:
-  # Trigger on version tag pushes (e.g. v1.0.0)
   push:
     tags:
       - 'v*.*.*'
-  # Allow manual dispatch
   workflow_dispatch:
 
 jobs:
@@ -27,14 +25,15 @@ jobs:
       - name: Restore Anthropic.Client
         run: dotnet restore Anthropic.Client/Anthropic.Client.csproj
 
-      - name: Build Anthropic.Client (multi‑target)
+      - name: Build Anthropic.Client (multi-target)
         run: |
           dotnet build Anthropic.Client/Anthropic.Client.csproj \
-            --configuration Release
+            --configuration Release \
+            --no-restore
 
       - name: Run unit tests
         run: |
-          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release
+          dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj --configuration Release --framework net8.0
 
       - name: Pack Anthropic.Client
         run: |
@@ -50,13 +49,15 @@ jobs:
     needs: build-test
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout repository       
+        uses: actions/checkout@v3   
 
-      - name: Setup .NET SDK 9.0.x
+      - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: |
+            8.0.x
+            9.0.x
 
       - name: Push package to NuGet.org
         env:
