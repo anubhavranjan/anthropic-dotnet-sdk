@@ -28,13 +28,13 @@ jobs:
       - name: Build Anthropic.Client (multi‑target)
         run: |
           dotnet build Anthropic.Client/Anthropic.Client.csproj \
-            --configuration Release \
-            --no-restore
+            --configuration Release
 
       - name: Run unit tests
         run: |
           dotnet test Anthropic.Client.Tests/Anthropic.Client.Tests.csproj \
             --configuration Release \
+            --output ./artifacts \
             --no-build \
             --no-restore
 
